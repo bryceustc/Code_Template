@@ -212,3 +212,41 @@ vector<int> sub(vector<int> &A, vector<int> &B) {
     return C;
 }
 ```
+
+#### 高精度乘法模板
+```c++
+vector<int> mul(vector<int> &A, int b) {
+    vector<int> C; 
+    int t = 0;
+    for (int i = 0; i < A.size(); i++) {
+        t += A[i] * b;
+        C.push_back(t % 10);
+        t /= 10;
+    }
+    if (t > 0) C.push_back(t);
+    while (C.size() > 1 && C.back() == 0) {
+        C.pop_back();
+    }
+    return C;
+}
+```
+
+#### 高精度除法模板
+```c++
+vector<int> div(vector<int> &A, int b, int &r) {
+    vector<int> C;  // 商
+    r = 0;   // 余数
+    for (int i = A.size() - 1; i >= 0; i--) {
+        r = r * 10 + A[i];
+        C.push_back(r /b);
+        r %= b;
+    }
+    // 注意翻转
+    reverse(C.begin(), C.end());
+    // 去掉前导0
+    while (C.size() > 1 && C.back() == 0) {
+        C.pop_back();
+    }
+    return C;
+}
+```
