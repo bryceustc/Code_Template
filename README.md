@@ -186,7 +186,7 @@ vector<int> add(vector<int> &A, vector<int> &B) {
 // (A >= B)
 bool cmp (vector<int> &A, vector<int> &B) {
     if (A.size() != B.size()) return A.size() > B.size();
-    for (int i = A.size() - 1; i >=0; i--) {
+    for (int i = 0; i < A.size(); i++) {
         if (A[i] != B[i]) {
             return A[i] > B[i];
         }
